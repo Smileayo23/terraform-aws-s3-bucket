@@ -33,13 +33,17 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
+        working-directory: infra
 
       - name: Terraform Format
         run: terraform fmt -check
+        working-directory: infra
 
       - name: Terraform Plan
         run: terraform plan -var="bucket_name=my-unique-bucket-145623"
+        working-directory: infra
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
         run: terraform apply -auto-approve -var="bucket_name=my-unique-bucket-145623"
+        working-directory: infra
